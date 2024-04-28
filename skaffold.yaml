@@ -1,10 +1,12 @@
 apiVersion: skaffold/v2alpha3
 kind: Config
 build:
-  local:
-    push: false
+  # local:
+  #   push: false
+  googleCloudBuild:
+    projectId: nice-unison-421712
   artifacts:
-    - image: arsalon/auth
+    - image: us.gcr.io/nice-unison-421712/auth
       context: auth
       docker:
         dockerfile: Dockerfile
