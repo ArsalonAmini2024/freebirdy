@@ -2,6 +2,11 @@
 
 Welcome to Freebirdy, a microservices application created by Arsalon Amini as part of the CSC5201 Microservices and Cloud Computing course. This application aims to provide a private jet ticketing system using a range of specialized services.
 
+
+![Screenshot 2024-05-07 at 4 40 27 AM](https://github.com/ArsalonAmini2024/freebirdy/assets/152245904/571d02b6-0323-4ba2-8a4e-37aded06e8b4)
+
+
+
 ## Services
 
 The application comprises several key services, each with its distinct role:
