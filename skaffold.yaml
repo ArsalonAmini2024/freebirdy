@@ -1,20 +1,58 @@
 apiVersion: skaffold/v2alpha3
 kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
 build:
-  # local:
-  #   push: false
-  googleCloudBuild:
-    projectId: nice-unison-421712
+  local:
+    push: false
   artifacts:
-    - image: us.gcr.io/nice-unison-421712/auth
+    - image: arsalonamini/auth
       context: auth
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: "src/**/*.ts"
+          - src: 'src/**/*.ts'
             dest: .
-deploy:
-  kubectl:
-    manifests:
-      - ./infra/k8s/*
+    - image: arsalonamini/ticketing-client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .
+    - image: arsalonamini/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: arsalonamini/orders
+      context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: arsalonamini/expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: arsalonamini/payments
+      context: payments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
